@@ -1,18 +1,20 @@
 import styled, { css } from 'styled-components'
 import SetaPlay from './../assets/seta_play.png'
 import SetaVirar from './../assets/seta_virar.png'
+import erro from './../assets/icone_erro.png'
+import quase from './../assets/icone_quase.png'
+import certo from './../assets/icone_certo.png'
 import { useState } from 'react';
 
-export default function Card({ index, question, answer }) {
+export default function Card({ index, question, answer, conclued, setConclued, arrayConclued }) {
 
-    const [ClassCard, setClassCard] = useState(true);
     const [textCard, setTextCard] = useState('Pergunta');
+    const [classCard, setClassCard] = useState(false);
     const [complement, setComplement] = useState(<img src={SetaPlay} onClick={() => showText()} alt="icon" data-test="play-btn" />)
-
+    
     function showText() {
         setTextCard(question);
         setComplement(<img src={SetaVirar} onClick={() => showAnswer()} alt="icon" data-test="turn-btn" />);
-
 
     }
 
@@ -21,19 +23,19 @@ export default function Card({ index, question, answer }) {
         setComplement(
 
             <ContainerOptions>
-                <Button red>
+                <Button red onClick={() => checkAnswer("red")}>
 
                     Não lembrei
 
                 </Button>
 
-                <Button yellow>
+                <Button yellow onClick={() => checkAnswer("yellow")}>
 
                     Quase não lembrei
 
                 </Button>
 
-                <Button green>
+                <Button green onClick={() => checkAnswer("green")}>
 
                     Zap
 
@@ -43,29 +45,45 @@ export default function Card({ index, question, answer }) {
 
         );
 
+    }
+
+    function checkAnswer(choice) {
+        if (choice === "red") {
+            setTextCard("Pergunta")
+            setComplement(<img src={erro} alt="icon" />);
+            arrayConclued.push(choice)
+            setConclued((arrayConclued.length));
+            setClassCard(true);
+            
 
 
+        }
+        if (choice === "yellow") {
+
+            setTextCard("Pergunta")
+            setComplement(<img src={quase} alt="icon" />);
+            arrayConclued.push(choice)
+            setConclued((arrayConclued.length));
+            setClassCard(true);
+            
+        }
+        if (choice === "green") {
+            setTextCard("Pergunta")
+            setComplement(<img src={certo} alt="icon" />);
+            arrayConclued.push(choice)
+            setConclued((arrayConclued.length));
+            setClassCard(true);
+            
+        }
     }
 
 
     return (
-        <Face textCard={textCard}>
+        <Face textCard={textCard} classCard={classCard} >
             {textCard}  {textCard === 'Pergunta' ? (index + 1) : ''}
             {complement}
         </Face>
 
-        // <SecondFace>
-        //     O que é JSX?
-        //     <img src={SetaVirar} alt="seta_virar" />
-        // </SecondFace>
-        // <LastFace>
-        //     JSX é uma sintaxe para escrever HTML dentro do JS
-        //     <ContainerOptions>
-        //         <Option>Não lembrei</Option>
-        //         <Option>Quase não lembrei</Option>
-        //         <Option>Zap</Option>
-        //     </ContainerOptions>
-        // </LastFace>
     );
 }
 
@@ -81,7 +99,7 @@ const Face = styled.div`
       display: flex;
       justify-content: space-between;
     
-
+      text-decoration-line: ${(props) => props.textCard === 'Pergunta' && props.classCard === true ? "line-through" : "none"};
       font-family: 'Recursive';
       font-style: normal;
       font-weight: 700;
@@ -100,6 +118,7 @@ const Face = styled.div`
 
       }      
 `;
+
 
 
 const Button = styled.button`

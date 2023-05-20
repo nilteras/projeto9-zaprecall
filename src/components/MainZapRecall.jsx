@@ -30,6 +30,7 @@ const Container = styled.div`
   margin: 0px;
   padding: 0px;
   padding-bottom: 200px;
+  margin-bottom: 70px;
 
 
 `;
