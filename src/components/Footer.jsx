@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default function Footer({conclued, arrayConclued}){
     return (
-        <BaseFooter>
+        <BaseFooter data-test="footer"> 
             {conclued}/8 CONCLUIDOS
             {arrayConclued}
         </BaseFooter>

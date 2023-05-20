@@ -23,19 +23,19 @@ export default function Card({ index, question, answer, conclued, setConclued, a
         setComplement(
 
             <ContainerOptions>
-                <Button red onClick={() => checkAnswer("red")}>
+                <Button red onClick={() => checkAnswer("red")} data-test="no-btn">
 
                     Não lembrei
 
                 </Button>
 
-                <Button yellow onClick={() => checkAnswer("yellow")}>
+                <Button yellow onClick={() => checkAnswer("yellow")} data-test="partial-btn">
 
                     Quase não lembrei
 
                 </Button>
 
-                <Button green onClick={() => checkAnswer("green")}>
+                <Button green onClick={() => checkAnswer("green")} data-test="zap-btn">
 
                     Zap
 
@@ -50,7 +50,7 @@ export default function Card({ index, question, answer, conclued, setConclued, a
     function checkAnswer(choice) {
         if (choice === "red") {
             setTextCard("Pergunta")
-            setComplement(<img src={erro} alt="icon" />);
+            setComplement(<img src={erro} alt="icon" data-test="no-icon"/>);
             arrayConclued.push(choice)
             setConclued((arrayConclued.length));
             setClassCard(true);
@@ -61,7 +61,7 @@ export default function Card({ index, question, answer, conclued, setConclued, a
         if (choice === "yellow") {
 
             setTextCard("Pergunta")
-            setComplement(<img src={quase} alt="icon" />);
+            setComplement(<img src={quase} alt="icon" data-test="partial-icon" />);
             arrayConclued.push(choice)
             setConclued((arrayConclued.length));
             setClassCard(true);
@@ -69,7 +69,7 @@ export default function Card({ index, question, answer, conclued, setConclued, a
         }
         if (choice === "green") {
             setTextCard("Pergunta")
-            setComplement(<img src={certo} alt="icon" />);
+            setComplement(<img src={certo} alt="icon" data-test="zap-icon"/>);
             arrayConclued.push(choice)
             setConclued((arrayConclued.length));
             setClassCard(true);
@@ -79,8 +79,8 @@ export default function Card({ index, question, answer, conclued, setConclued, a
 
 
     return (
-        <Face textCard={textCard} classCard={classCard} >
-            {textCard}  {textCard === 'Pergunta' ? (index + 1) : ''}
+        <Face data-test="flashcard" textCard={textCard} classCard={classCard} >
+            <p data-test="flashcard-text"> {textCard}  {textCard === 'Pergunta' ? (index + 1) : ''}</p>
             {complement}
         </Face>
 
