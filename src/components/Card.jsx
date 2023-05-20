@@ -11,6 +11,7 @@ export default function Card({ index, question, answer, conclued, setConclued, a
     const [textCard, setTextCard] = useState('Pergunta');
     const [classCard, setClassCard] = useState(false);
     const [complement, setComplement] = useState(<img src={SetaPlay} onClick={() => showText()} alt="icon" data-test="play-btn" />)
+    const [colorText, setColorText] = useState('#333333');
     
     function showText() {
         setTextCard(question);
@@ -54,6 +55,7 @@ export default function Card({ index, question, answer, conclued, setConclued, a
             arrayConclued.push(choice)
             setConclued((arrayConclued.length));
             setClassCard(true);
+            setColorText('#FF3030')
             
 
 
@@ -65,7 +67,7 @@ export default function Card({ index, question, answer, conclued, setConclued, a
             arrayConclued.push(choice)
             setConclued((arrayConclued.length));
             setClassCard(true);
-            
+            setColorText('#FF922E')
         }
         if (choice === "green") {
             setTextCard("Pergunta")
@@ -73,13 +75,14 @@ export default function Card({ index, question, answer, conclued, setConclued, a
             arrayConclued.push(choice)
             setConclued((arrayConclued.length));
             setClassCard(true);
+            setColorText('#2FBE34')
             
         }
     }
 
 
     return (
-        <Face data-test="flashcard" textCard={textCard} classCard={classCard} >
+        <Face data-test="flashcard" textCard={textCard} classCard={classCard} colorText={colorText} >
             <p data-test="flashcard-text"> {textCard}  {textCard === 'Pergunta' ? (index + 1) : ''}</p>
             {complement}
         </Face>
@@ -93,7 +96,7 @@ const Face = styled.div`
       background-color: ${(props) => props.textCard === 'Pergunta' ? "white" : "#FFFFD5"};
       box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
       border-radius: 5px;
-      padding: 18px 15px 10px 15px;
+      padding: ${(props) => props.textCard === 'Pergunta' ? "23px 15px 23px 15px" : "10px 15px 10px 15px" }; 
       margin-bottom: 20px;
 
       display: flex;
@@ -106,7 +109,7 @@ const Face = styled.div`
       font-size: ${(props) => props.textCard === 'Pergunta' ? "16px" : "18px"};
       line-height: 19px;
 
-      color: #333333;
+      color: ${(props) => props.colorText};
       position: relative;
 
       img{
