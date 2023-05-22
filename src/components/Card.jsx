@@ -120,7 +120,7 @@ const Face = styled.div`
         position: ${(props) => props.textCard === 'Pergunta' ? "none" : "absolute"};
         right: 15px;
         bottom: 6px;
-
+        cursor: pointer;
       }      
 `;
 

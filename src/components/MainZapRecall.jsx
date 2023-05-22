@@ -105,6 +105,7 @@ const ButtonStart = styled.button`
         text-align: center;
 
         color: #D70900;
+        cursor: pointer;
 
 
 `;
