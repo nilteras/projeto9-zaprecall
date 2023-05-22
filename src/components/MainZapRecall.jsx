@@ -23,7 +23,7 @@ export default function MainZapRecall() {
             <FisrtPage playZap={playZap}>
                 <img src={logo} alt="logo" />
                 <h1>ZapRecall</h1>
-                <ButtonStart onClick={() => StartZap()}>
+                <ButtonStart data-test="start-btn" onClick={() => StartZap()}>
                     Iniciar Recall!
                 </ButtonStart>
             </FisrtPage>
