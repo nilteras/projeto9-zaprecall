@@ -49,6 +49,8 @@ export default function Card({ index, question, answer, conclued, setConclued, a
     }
 
     function checkAnswer(choice) {
+        
+        console.log(arrayConclued)
         if (choice === "red") {
             setTextCard("Pergunta")
             setComplement(<img src={erro} alt="icon" data-test="no-icon"/>);

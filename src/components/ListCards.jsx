@@ -8,6 +8,7 @@ export default function ListCards({ cards }){
     const [conclued, setConclued] = useState(0);
     const arrayConclued = [];
     
+    
    
     return (
         <ContainerCards>
@@ -29,6 +30,7 @@ export default function ListCards({ cards }){
 
             conclued={conclued}
             arrayConclued={arrayConclued}
+            cards={cards}
         />    
         </ContainerCards>
     );

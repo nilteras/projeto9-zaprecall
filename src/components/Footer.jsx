@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
-export default function Footer({conclued, arrayConclued}){
+export default function Footer({conclued, arrayConclued, cards}){
+    
     return (
         <BaseFooter data-test="footer"> 
-            {conclued}/8 CONCLUIDOS
+            {conclued}/{cards.length} CONCLUIDOS
             {arrayConclued}
         </BaseFooter>
     );
